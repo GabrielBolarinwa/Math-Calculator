@@ -13,6 +13,7 @@ body {
     min-height: 100vh;
     background: linear-gradient(135deg, #1e3c72, #2a5298);
     font-family: Gilroy, sans-serif;
+    padding-top: 0.5rem;
     font-size: var(--font-size-default);
 }
 
