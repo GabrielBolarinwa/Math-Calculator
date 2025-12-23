@@ -20,20 +20,24 @@ function calculateSin(deg) {
 }
 function calculate() {
   const calcMath = {
-    sin: (deg) => Math.sin((deg * Math.PI) / 180),
-    cos: (deg) => Math.cos((deg * Math.PI) / 180),
-    tan: (deg) => Math.tan((deg * Math.PI) / 180),
+    sin: (deg) => Math.sin((deg * Math.PI) / 180).toPrecision(6),
+    cos: (deg) => Math.cos((deg * Math.PI) / 180).toPrecision(6),
+    tan: (deg) => Math.tan((deg * Math.PI) / 180).toPrecision(6),
+    PI: Math.PI,
+    e: Math.E,
+    sqrt: (number) => Math.sqrt(number),
+    log: (number) => Math.log10(number),
   };
 
   let expression = display.innerText
-    .replace(/π/g, "Math.PI")
-    .replace(/\be\b/g, "Math.E")
-    .replace(/√(\d+|\([^\)]+\))/g, "Math.sqrt($1)")
+    .replace(/π/g, "calcMath.PI")
+    .replace(/\be\b/g, "calcMath.e")
+    .replace(/√(\d+|\([^\)]+\))/g, "calcMath.sqrt($1)")
     .replace(/%/g, "*0.01")
     .replace(/\^/g, "**")
     .replace(/÷/g, "/")
     .replace(/×/g, "*")
-    .replace(/log\(/g, "Math.log10(")
+    .replace(/log\(/g, "calcMath.log(")
     .replace(/sin\(/g, "calcMath.sin(")
     .replace(/cos\(/g, "calcMath.cos(")
     .replace(/tan\(/g, "calcMath.tan(")
@@ -44,11 +48,9 @@ function calculate() {
     return;
   }
   try {
-    console.log(expression);
-    display.value = eval(expression);
+    display.value = eval(expression).toPrecision(4);
   } catch (error) {
     display.value = error;
-    console.error(error);
   }
 }
 
