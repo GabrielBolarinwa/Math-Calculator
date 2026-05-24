@@ -8,6 +8,14 @@
       name="description"
       content="This is a calculator built as a subset of the Gabriel Bolarinwa Portfolio. It is a scientific calculator made to carry out scientific calculations while chaining a long line of calculations fully supported by Javascript."
     />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=JetBrains+Mono:100,200,300,regular,500,600,700,800,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic"
+      rel="stylesheet"
+    />
     <title>Math Calculator - Gabriel Bolarinwa</title>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
   </head>
@@ -18,36 +26,36 @@
         <output id="display" class="displayOutput" aria-live="polite">0</output>
       </section>
       <nav class="buttons" aria-label="Calculator Buttons">
-        <button onclick="clearDisplay()">C</button>
-        <button onclick="backspace()">&#9003;</button>
-        <button onclick="append('(')">&#40;</button>
-        <button onclick="append(')')">&#41;</button>
+        <button data-action="clear">C</button>
+        <button data-action="backspace">&#9003;</button>
+        <button data-value="(">&#40;</button>
+        <button data-value=")">&#41;</button>
 
-        <button onclick="append('^')">^</button>
-        <button onclick="append('√')">√</button>
-        <button onclick="append('log(')">log</button>
-        <button onclick="append('sin(')">sin</button>
-        <button onclick="append('cos(')">cos</button>
-        <button onclick="append('tan(')">tan</button>
-        <button onclick="append('7')">7</button>
-        <button onclick="append('8')">8</button>
-        <button onclick="append('9')">9</button
-        ><button onclick="append('÷')">&#247;</button>
-        <button onclick="append('×')">&times;</button>
-        <button onclick="append('4')">4</button>
-        <button onclick="append('5')">5</button>
-        <button onclick="append('6')">6</button>
-        <button onclick="append('-')">-</button>
-        <button onclick="append('+')">+</button>
-        <button onclick="append('1')">1</button>
-        <button onclick="append('2')">2</button>
-        <button onclick="append('3')">3</button>
-        <button onclick="append('π')">π</button>
-        <button onclick="append('e')">e</button>
-        <button class="zero-button" onclick="append('0')">0</button
-        ><button onclick="append('.')">.</button>
-        <button onclick="append('%')">%</button>
-        <button onclick="calculate()">=</button>
+        <button data-value="^">^</button>
+        <button data-value="√">√</button>
+        <button data-value="log">log</button>
+        <button data-value="sin(">sin</button>
+        <button data-value="cos(">cos</button>
+        <button data-value="tan(">tan</button>
+        <button data-value="7">7</button>
+        <button data-value="8">8</button>
+        <button data-value="9">9</button
+        ><button data-value="&#247;">&#247;</button>
+        <button data-value="&times;">&times;</button>
+        <button data-value="4">4</button>
+        <button data-value="5">5</button>
+        <button data-value="6">6</button>
+        <button data-value="-">-</button>
+        <button data-value="+">+</button>
+        <button data-value="1">1</button>
+        <button data-value="2">2</button>
+        <button data-value="3">3</button>
+        <button data-value="π">π</button>
+        <button data-value="e">e</button>
+        <button data-value="0" class="zero-button">0</button
+        ><button data-value=".">.</button>
+        <button data-value="%">%</button>
+        <button data-action="calculate">=</button>
       </nav>
     </main>
     <script src="js/script.js"></script>
