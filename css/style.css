@@ -1,9 +1,12 @@
 @import url("fonts.css");
-@import url("variables.css");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+:root {
+  --font-size-default: clamp(1rem, 0.5rem + 1vw, 2rem);
 }
 
 body {
@@ -12,7 +15,7 @@ body {
   align-items: flex-start;
   min-height: 100vh;
   background: linear-gradient(135deg, #1e3c72, #2a5298);
-  font-family: Gilroy, sans-serif;
+  font-family: Poppins, sans-serif;
   padding-top: 0.5rem;
   font-size: var(--font-size-default);
 }
@@ -47,7 +50,7 @@ body {
   border-bottom: 1px solid #0002;
   width: 100%;
   display: block;
-  font-family: Orbitron, "Courier New", Courier, monospace;
+  font-family: "Jetbrains Mono", "Courier New", Courier, monospace;
 }
 
 .buttons {
