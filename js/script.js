@@ -17,12 +17,14 @@ function calculate() {
     .replace(/%/g, "* 0.01")
     .replace(/÷/g, "/")
     .replace(/×/g, "*");
-  if (!isBalanced(expression)) {
-    display.textContent = "Unbalanced brackets";
+  const balanced = balanceExpression(expression);
+  if (balanced === null) {
+    display.innerText = "Invalid brackets";
     return;
   }
+
   try {
-    const tokens = tokenize(expression);
+    const tokens = tokenize(balanced);
     const postfix = shuntingYard(tokens);
     const result = evaluatePostfix(postfix);
     display.innerText = parseFloat(result?.toPrecision(10)).toString();
@@ -31,19 +33,19 @@ function calculate() {
   }
 }
 
-function isBalanced(expression) {
-  let stack = [];
-  for (let char of expression) {
+function balanceExpression(expression) {
+  let count = 0;
+  for (const char of expression) {
     if (char === "(") {
-      stack.push("(");
+      count++;
     } else if (char === ")") {
-      if (!stack.length) {
-        return false;
-      }
-      stack.pop();
+      count--;
     }
+    if (count < 0) {
+      return null;
+    }
+    return expression + ")".repeat(count);
   }
-  return stack.length === 0;
 }
 
 document.querySelector(".buttons").addEventListener("click", (e) => {
@@ -80,6 +82,8 @@ document.addEventListener("keydown", function (e) {
     backspace();
   } else if (e.key === "e") {
     append("e");
+  } else if (e.key === "x") {
+    clearDisplay();
   }
 });
 
@@ -141,10 +145,25 @@ function tokenize(expression) {
   return tokens;
 }
 
+const ops = {
+  "+": (a, b) => a + b,
+  "-": (a, b) => a - b,
+  "*": (a, b) => a * b,
+  "/": (a, b) => a / b,
+  "^": (a, b) => Math.pow(a, b),
+};
+const fns = {
+  sin: (n) => Math.sin((n * Math.PI) / 180),
+  cos: (n) => Math.cos((n * Math.PI) / 180),
+  tan: (n) => Math.tan((n * Math.PI) / 180),
+  log: (n) => Math.log10(n),
+  sqrt: (n) => Math.sqrt(n),
+};
+
 function shuntingYard(tokens) {
   const output = [];
   const stack = [];
-  const precendence = {
+  const precedence = {
     "+": 1,
     "-": 1,
     "*": 2,
@@ -174,8 +193,8 @@ function shuntingYard(tokens) {
       while (stack.length) {
         const topVal = stack.at(-1).value;
         if (
-          precendence[topVal] > precendence[curVal] ||
-          (precendence[topVal] === precendence[curVal] && !rightAssoc[curVal])
+          precedence[topVal] > precedence[curVal] ||
+          (precedence[topVal] === precedence[curVal] && !rightAssoc[curVal])
         ) {
           output.push(stack.pop());
         } else break;
@@ -217,13 +236,7 @@ function evaluatePostfix(tokens) {
     }
     if (token.type === "function") {
       const a = stack.pop();
-      const fns = {
-        sin: (n) => Math.sin((n * Math.PI) / 180),
-        cos: (n) => Math.cos((n * Math.PI) / 180),
-        tan: (n) => Math.tan((n * Math.PI) / 180),
-        log: (n) => Math.log10(n),
-        sqrt: (n) => Math.sqrt(n),
-      };
+
       if (fns[token.value]) {
         stack.push(fns[token.value](a));
       }
@@ -232,13 +245,6 @@ function evaluatePostfix(tokens) {
     if (token.type === "operator") {
       const b = stack.pop();
       const a = stack.pop();
-      const ops = {
-        "+": (a, b) => a + b,
-        "-": (a, b) => a - b,
-        "*": (a, b) => a * b,
-        "/": (a, b) => a / b,
-        "^": (a, b) => Math.pow(a, b),
-      };
       stack.push(ops[token.value](a, b));
       continue;
     }

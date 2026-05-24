@@ -36,26 +36,26 @@
 
   <body>
     <main class="calculator">
-      <section aria-label="Calculator Display" class="display">
+      <section aria-label="Calculator Display" class="display" role="math">
         <output id="display" class="displayOutput" aria-live="polite">0</output>
       </section>
       <nav class="buttons" aria-label="Calculator Buttons">
-        <button data-action="clear">C</button>
-        <button data-action="backspace">&#9003;</button>
-        <button data-value="(">&#40;</button>
-        <button data-value=")">&#41;</button>
+        <button aria-label="Clear Display" data-action="clear">C</button>
+        <button aria-label="Backspace" data-action="backspace">&#9003;</button>
+        <button aria-label="Left Bracket" data-value="(">&#40;</button>
+        <button aria-label="Right Bracket" data-value=")">&#41;</button>
 
-        <button data-value="^">^</button>
-        <button data-value="√">√</button>
-        <button data-value="log">log</button>
-        <button data-value="sin(">sin</button>
-        <button data-value="cos(">cos</button>
-        <button data-value="tan(">tan</button>
+        <button aria-label="Power of" data-value="^">^</button>
+        <button aria-label="Square Root" data-value="√">√</button>
+        <button aria-label="log" data-value="log">log</button>
+        <button aria-label="sin" data-value="sin(">sin</button>
+        <button aria-label="cos" data-value="cos(">cos</button>
+        <button aria-label="tan" data-value="tan(">tan</button>
         <button data-value="7">7</button>
         <button data-value="8">8</button>
         <button data-value="9">9</button
-        ><button data-value="&#247;">&#247;</button>
-        <button data-value="&times;">&times;</button>
+        ><button aria-label="Divide" data-value="&#247;">&#247;</button>
+        <button aria-label="Multipication" data-value="&times;">&times;</button>
         <button data-value="4">4</button>
         <button data-value="5">5</button>
         <button data-value="6">6</button>
@@ -64,14 +64,31 @@
         <button data-value="1">1</button>
         <button data-value="2">2</button>
         <button data-value="3">3</button>
-        <button data-value="π">π</button>
-        <button data-value="e">e</button>
+        <button aria-label="Pi" data-value="π">π</button>
+        <button aria-label="e" data-value="e">e</button>
         <button data-value="0" class="zero-button">0</button
         ><button data-value=".">.</button>
-        <button data-value="%">%</button>
-        <button data-action="calculate">=</button>
+        <button aria-label="Percentage" data-value="%">%</button>
+        <button aria-label="Calculate" data-action="calculate">=</button>
       </nav>
     </main>
-    <script src="js/script.js"></script>
+    <footer>
+      <div>
+        <p>Instructions List:</p>
+        <ul>
+          <li>Press x for clear</li>
+          <li>Press 0 - 9 for numbers</li>
+          <li>Press s for sin</li>
+          <li>Press c for cos</li>
+          <li>Press t for tan</li>
+          <li>Press l for log</li>
+          <li>Press r for square root</li>
+          <li>Press ^ for Power</li>
+          <li>Press e for exponent</li>
+          <li>Press p for PI</li>
+        </ul>
+      </div>
+    </footer>
+    <script type="module" src="js/script.js"></script>
   </body>
 </html>
